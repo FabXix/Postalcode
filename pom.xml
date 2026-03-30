@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 👇 Parent de Spring Boot (LO MÁS IMPORTANTE) -->
+    <!-- Parent de Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -16,12 +16,12 @@
     <artifactId>demo</artifactId>
     <version>1.0.0</version>
 
-    <!-- 👇 Versión de Java -->
+    <!-- Versión de Java -->
     <properties>
         <java.version>17</java.version>
     </properties>
 
-    <!-- 👇 Dependencias -->
+    <!-- Dependencias -->
     <dependencies>
 
         <!-- Spring Boot base -->
@@ -52,7 +52,7 @@
 
     </dependencies>
 
-    <!-- 👇 Plugin para ejecutar Spring Boot -->
+    <!-- Plugin para ejecutar Spring Boot -->
     <build>
         <plugins>
             <plugin>
