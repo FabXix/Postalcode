@@ -11,9 +11,61 @@ async function loadUsers() {
     users.forEach(user => {
         const li = document.createElement("li");
         li.textContent = user.username;
+        const button = document.createElement("button");
+        button.textContent = "Delete user";
+        button.addEventListener("click", async () => {
+            try {
+                const res = await fetch(API_URL + "/" + user.id, {
+                    method: "DELETE",
+                });
+                if (res.ok) {
+                    li.remove();
+                } else {
+                    const text = await res.text();
+                    alert(text);
+                }
+            } catch (e) {
+                alert(e.message);
+            }
+        })
+        li.appendChild(button);
         list.appendChild(li);
     });
 }
+
+async function login() {
+    const nameInput = document.getElementById("name");
+    const passwordInput = document.getElementById("password");
+
+    const name = nameInput.value;
+    const password = passwordInput.value;
+
+    try {
+        console.log(API_URL + "/auth/login");
+        const res = await fetch(API_URL + "/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: name,
+                password: password
+            })
+        });
+
+        const text = await res.text();
+
+        if (res.ok) {
+            alert("Login success: " + text);
+        } else {
+            alert("Error: " + text);
+        }
+
+    } catch (e) {
+        alert("Network error: " + e.message);
+    }
+}
+
 
 // POST user
 async function addUser() {

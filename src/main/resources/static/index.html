@@ -40,6 +40,14 @@
     <button type="submit">Agregar</button>
 </form>
 
+<form onsubmit="login(); return false;">
+    <input type="text" id="name" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <button type="submit">login</button>
+</form>
+
+
 <ul id="userList"></ul>
 
 <script src="users.js"></script>

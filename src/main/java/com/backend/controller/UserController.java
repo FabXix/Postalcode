@@ -29,4 +29,23 @@ public class UserController {
             return ResponseEntity.status(409).body(Map.of("error", e.getMessage()));
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String id){
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.status(201).body(Map.of("message", "user has been deleted"));
+        }catch (RuntimeException e) {
+            return ResponseEntity.status(409).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<?> login(@RequestBody String username, @RequestBody String password){
+        try{
+            String token  = userService.login(username, password);
+            return ResponseEntity.status(200).body(token);
+        }catch (RuntimeException e){
+            return ResponseEntity.status(409).body(Map.of("error", e.getMessage()));
+        }
+    }
 }
