@@ -1,7 +1,8 @@
 package com.backend.repository;
 
-import com.backend.object.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.backend.object.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
     boolean existsByUsername(String username);

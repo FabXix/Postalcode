@@ -1,6 +1,5 @@
 package com.backend.object;
 
-import jdk.jfr.Description;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
