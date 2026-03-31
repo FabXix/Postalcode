@@ -27,4 +27,20 @@ public class UserService {
         }
         userRepository.save(user);
     }
+
+    public String login(String username, String password){
+        User user = userRepository.findByUsername(username);
+
+        if(user.getPassword().equals(password)){
+            return "token-" + user.getId();
+        }
+        throw new RuntimeException("Invalid username or password");
+    }
+
+    public void deleteUser(String id) {
+        if (!userRepository.existsById(id)) {
+            throw new RuntimeException("Id not found id: " + id);
+        }
+        userRepository.deleteById(id);
+    }
 }
