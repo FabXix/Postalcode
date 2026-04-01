@@ -13,13 +13,16 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping
     public List<User> getUsers() {
         return userService.getUsers();
     }
+
     @PostMapping
     public ResponseEntity<?> addUser(@RequestBody User user){
         try {
@@ -29,6 +32,7 @@ public class UserController {
             return ResponseEntity.status(409).body(Map.of("error", e.getMessage()));
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id){
         try {
