@@ -1,5 +1,6 @@
 package com.backend.controller;
 
+import com.backend.object.LoginRequest;
 import com.backend.object.User;
 import com.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -43,13 +44,15 @@ public class UserController {
         }
     }
 
-    @PostMapping("/auth/login")
-    public ResponseEntity<?> login(@RequestBody String username, @RequestBody String password){
+    @PostMapping("/auth/login") // Aqui recibia 2 request, pero debe ir englobado en 1
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         try{
-            String token  = userService.login(username, password);
-            return ResponseEntity.status(200).body(token);
+            String token  = userService.login(loginRequest.getUsername(), loginRequest.getPassword() );
+
+            return ResponseEntity.status(200).body(Map.of("token", token));
+           // return ResponseEntity.status(200).body(token);
         }catch (RuntimeException e){
-            return ResponseEntity.status(409).body(Map.of("error", e.getMessage()));
+            return ResponseEntity.status(401).body(Map.of("error", e.getMessage()));
         }
     }
 }

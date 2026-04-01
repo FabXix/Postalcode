@@ -53,15 +53,22 @@ async function login() {
             })
         });
 
-        const text = await res.text();
+        const data = await res.json();
 
-        if (res.ok) {
-            alert("Login success: " + text);
-        } else {
-            alert("Error: " + text);
-        }
+       if(res.ok){
+           localStorage.setItem("token", data.token);
+           localStorage.setItem("currentUser",name);
+
+           alert("¡Bienvenido, " + name + "!");
+
+           // Nos manda al home
+           window.location.href = "home.html";
+       } else {
+            alert("Error en login: " + data.error);
+            }
 
     } catch (e) {
+        console.log(e);
         alert("Network error: " + e.message);
     }
 }

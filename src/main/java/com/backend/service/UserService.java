@@ -18,6 +18,7 @@ public class UserService {
     public List<User> getUsers() {
         return userRepository.findAll();
     }
+
     public void addUser(User user){
         if(userRepository.existsByUsername(user.getUsername())){
             throw new RuntimeException("Username already exists");
@@ -31,10 +32,10 @@ public class UserService {
     public String login(String username, String password){
         User user = userRepository.findByUsername(username);
 
-        if(user.getPassword().equals(password)){
-            return "token-" + user.getId();
+        if(user == null || !user.getPassword().equals(password)){
+            throw new RuntimeException("Invalid username or password");
         }
-        throw new RuntimeException("Invalid username or password");
+        return "token-" + user.getId();
     }
 
     public void deleteUser(String id) {

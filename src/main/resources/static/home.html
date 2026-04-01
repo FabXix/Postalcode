@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<script>
+
+    const token = localStorage.getItem("token");
+
+    if (!token || token === null || token === "undefined") {
+        alert("Acceso denegado. Debes iniciar sesión primero.");
+        window.location.href = "index.html";
+    }
+</script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">PostalCode</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+                <div class="card text-bg-dark border-secondary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Web Scraper Pro</h5>
+                        <p class="card-text text-secondary">Un script en Python para extraer datos de sitios e-commerce.</p>
+                        <span class="badge bg-primary">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card text-bg-dark border-secondary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Discord Bot Base</h5>
+                        <p class="card-text text-secondary">Estructura inicial para crear bots de Discord con Java.</p>
+                        <span class="badge bg-success">Java</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card text-bg-dark border-secondary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">React UI Kit</h5>
+                        <p class="card-text text-secondary">Componentes de interfaz listos para usar en tus proyectos web.</p>
+                        <span class="badge bg-info text-dark">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
+
+        <script>
+            function logout() {
+                // Borramos TODO lo que guardamos
+                localStorage.clear();
+                // O si quieren ser específicos:
+                // localStorage.removeItem("token");
+                // localStorage.removeItem("currentUser");
+
+                alert("Has cerrado sesión correctamente.");
+                window.location.href = "index.html";
+            }
+        </script>
+
+    </div>
+
+
+
+
+</body>
+
+
+
+</html>
